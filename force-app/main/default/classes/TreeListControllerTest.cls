@@ -24,7 +24,17 @@ private class TreeListControllerTest {
 
     @TestSetup
     static void makeData(){
-        
+        Tree__c tree = new Tree__c(Name='Banyan Tree', Benefit__c='Dummy Benefits Here', Picture__c='');
+        insert tree;
     }
 
+    @isTest
+    static void testGetAllTrees() {
+        // TO DO: implement unit test
+        List<Tree__c> trees = TreeListController.getAllTrees();
+        Test.startTest();
+        System.assertEquals(1, trees.size(), 'Number of tree records does not match');
+        System.assert(trees[0].Name == 'Banyan Tree', 'Name not matched for the tree record');
+        Test.stopTest();
+    }
 }
